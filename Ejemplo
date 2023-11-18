@@ -1,0 +1,40 @@
+interface Product {
+   void operation();
+}
+class ConcreteProductA implements Product {
+   public void operation() {
+       System.out.println("Operación de ConcreteProductA");
+   }
+}
+class ConcreteProductB implements Product {
+   public void operation() {
+       System.out.println("Operación de ConcreteProductB");
+   }
+}
+
+//Clase que crea los objetos Product
+class Factory {
+   public Product createProduct(String type) {
+       if (type.equals("A")) {
+           return new ConcreteProductA();
+       } else if (type.equals("B")) {
+           return new ConcreteProductB();
+       } else {
+           throw new IllegalArgumentException("Tipo de producto desconocido");
+       }
+   }
+}
+
+// Ejemplo de uso del patrón Factory
+public class Main {
+   public static void main(String[] args) {
+       // Creamos una instancia del Factory
+       Factory factory = new Factory();
+       // Usamos el Factory para crear objetos Product
+       Product productA = factory.createProduct("A");
+       productA.operation(); 
+       Product productB = factory.createProduct("B");
+       productB.operation();  
+   }
+}
+
